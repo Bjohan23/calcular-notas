@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora de notas en Tiempo Real</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container mt-5">
-      <h2 class="text-center mb-4 font-italic">Calculadora de notas</h2>
-      <hr />
-      <form id="formulario">
-        <div class="form-group">
-          <label for="ec">EC:</label>
-          <input type="number" class="form-control" id="ec" required />
-        </div>
-        <div class="form-group">
-          <label for="ed">ED:</label>
-          <input type="number" class="form-control" id="ed" required />
-        </div>
-        <div class="form-group">
-          <label for="ep">EP:</label>
-          <input type="number" class="form-control" id="ep" required />
-        </div>
-        <div class="form-group">
-          <label for="ea">EA:</label>
-          <input type="number" class="form-control" id="ea" required />
-        </div>
-        <div class="form-group">
-          <label for="resultado">Resultado:</label>
-          <input type="text" class="form-control" id="resultado" readonly />
-        </div>
-      </form>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Fórmula</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold mb-4 text-center">Calculadora de Fórmula</h1>
+        <form id="calcForm" class="space-y-4">
+            <div>
+                <label for="ec" class="block text-sm font-medium text-gray-700">EC</label>
+                <input type="number" id="ec" name="ec" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" step="any">
+            </div>
+            <div>
+                <label for="ed" class="block text-sm font-medium text-gray-700">ED</label>
+                <input type="number" id="ed" name="ed" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" step="any">
+            </div>
+            <div>
+                <label for="ep" class="block text-sm font-medium text-gray-700">EP</label>
+                <input type="number" id="ep" name="ep" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" step="any">
+            </div>
+            <div>
+                <label for="ea" class="block text-sm font-medium text-gray-700">EA</label>
+                <input type="number" id="ea" name="ea" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" step="any">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Resultado</label>
+                <div id="resultado" class="mt-1 p-2 border border-gray-300 rounded-md bg-gray-50">0.00</div>
+            </div>
+        </form>
     </div>
 
-    <!-- Agrega la referencia de Bootstrap JS y Popper.js antes de la de jQuery -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
-  </body>
+    <script>
+        document.getElementById('calcForm').addEventListener('input', function () {
+            const ec = parseFloat(document.getElementById('ec').value) || 0;
+            const ed = parseFloat(document.getElementById('ed').value) || 0;
+            const ep = parseFloat(document.getElementById('ep').value) || 0;
+            const ea = parseFloat(document.getElementById('ea').value) || 0;
+
+            const resultado = ec * 0.25 + ed * 0.30 + ep * 0.40 + ea * 0.05;
+            document.getElementById('resultado').textContent = resultado.toFixed(2);
+        });
+    </script>
+</body>
 </html>
